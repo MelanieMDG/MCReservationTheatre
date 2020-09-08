@@ -9,12 +9,34 @@ public class Spectacle {
 	private String resumé;
 	
 	//***CONSTRUCTEUR**//
-	public Spectacle(int id, String nom, int temps, String aut, String mes) {
-		this.num_spectacle=id;
+	public Spectacle(String nom, int temps, String aut, String mes, int id) {
 		this.titre=nom;
 		this.duree=temps;
 		this.auteur=aut;
 		this.metteur_en_scene=mes;
+		this.num_spectacle=id;
+	}
+	public Spectacle(String nom, int temps, String aut, String mes) {
+		this.titre=nom;
+		this.duree=temps;
+		this.auteur=aut;
+		this.metteur_en_scene=mes;
+	}
+
+	public String getTitre() {
+		return this.titre;
+	}
+
+	public String getAuteur() {
+		return this.auteur;
+	}
+
+	public String getMetteur_en_scene() {
+		return this.metteur_en_scene;
+	}
+
+	public int getDuree() {
+		return this.duree;
 	}
 	
 	

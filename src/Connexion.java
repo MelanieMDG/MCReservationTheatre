@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -11,15 +13,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 import actions.ActionConnexion;
+import compte.CompteUtilisateur;
 
 import javax.swing.JLabel;
 
 public class Connexion {
-	
-	/*public static final ArrayList <Representation> liste_representation=new ArrayList <Representation>() ;
-	public static final ArrayList <Salle> liste_salle=new ArrayList <Salle>() ;
-	public static final Scanner sc = new Scanner(System.in);
-	public static CompteUtilisateur Compte = null;*/
 
 	private JFrame frmConnexion;
 	private JTextField textField_identifiant;

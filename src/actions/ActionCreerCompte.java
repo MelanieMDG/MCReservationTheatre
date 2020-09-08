@@ -3,6 +3,7 @@ package actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import baseDeDonnees.BDD;
@@ -44,16 +45,18 @@ public class ActionCreerCompte implements ActionListener {
 				System.out.println(nom+" "+prenom+" "+type);
 				CompteUtilisateur NewCompte = new Administrateur(login,mp1,nom,prenom);
 				BDD.ajouter_compte(NewCompte);
+				JOptionPane.showMessageDialog(null,"Le compte a été crée avec succès. Le login de l'utilisateur est "+NewCompte.GetLogin(),"Compte crée",JOptionPane.INFORMATION_MESSAGE);
 			}else if(type.compareTo("Guichetier")==0) {
 				CompteUtilisateur NewCompte = new Guichetier(login,mp1,nom,prenom);
 				BDD.ajouter_compte(NewCompte);
+				JOptionPane.showMessageDialog(null,"Le compte a été crée avec succès. Le login de l'utilisateur est "+NewCompte.GetLogin(),"Compte crée",JOptionPane.INFORMATION_MESSAGE);
 			}else {
-				//TODO : Message d'erreur
-				System.out.println("Veuillez entrer un type correcte");
+				//message d'erreur
+				JOptionPane.showMessageDialog(null,"Le type d'utilisateur entré n'est pas correct","Erreur",JOptionPane.ERROR_MESSAGE);
 			}
 		}else {
-			//TODO : Message d'erreur
-			System.out.println("Les deux mots de passe ne correspondent pas.");
+			//message d'erreur
+			JOptionPane.showMessageDialog(null,"Les deux mots de passe saisis ne correspondent pas","Erreur",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
