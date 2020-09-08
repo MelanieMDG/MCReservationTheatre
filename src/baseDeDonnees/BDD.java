@@ -33,7 +33,6 @@ public class BDD {
 			ResultSet r = st.executeQuery("select mdp, ID, login,Nom,Prenom,Type from utilisateur where login='"+login+"'");
 			
 			String mdp_bdd="";
-			int id=0;
 			String login_bdd="";
 			String nom="";
 			String prenom="";
@@ -41,19 +40,17 @@ public class BDD {
 			
 			while(r.next()) {
 				mdp_bdd=r.getString("mdp");
-				id=r.getInt("ID");
 				login_bdd=r.getString("login");
 				nom=r.getString("Nom");
 				prenom=r.getString("Prenom");
 				Type=r.getString("Type");
 			}
-			
 			if(mdp.compareTo(mdp_bdd)==0) {
-				CompteUtilisateur tmp = new CompteUtilisateur(id,login_bdd,mdp_bdd,nom,prenom);
+				CompteUtilisateur tmp = new CompteUtilisateur(login_bdd,mdp_bdd,nom,prenom);
 				if(Type.compareTo("Admin")==0) {
-					tmp = new Administrateur(id,login_bdd,mdp_bdd,nom,prenom);
+					tmp = new Administrateur(login_bdd,mdp_bdd,nom,prenom);
 				}else {
-					tmp= new Guichetier(id,login_bdd,mdp_bdd,nom,prenom);
+					tmp= new Guichetier(login_bdd,mdp_bdd,nom,prenom);
 				}
 				CU=tmp;
 			}
@@ -62,5 +59,23 @@ public class BDD {
 			e.printStackTrace();
 		}
 		return CU;
+	}
+
+	public static void ajouter_compte(CompteUtilisateur Compte) {
+		
+		try {
+			Connection cnx=Connecter_bdd();
+			
+			Statement st = cnx.createStatement();
+			
+			String req="insert into utilisateur (login,Nom,Prenom,mdp,Type) values ('"+Compte.GetLogin()+"','"
+					+Compte.GetNom()+"','"+Compte.GetPrenom()+"','"+Compte.GetMDP()+"','"+Compte.GetType()+"')";
+			System.out.println(req);
+			
+			st.execute(req);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

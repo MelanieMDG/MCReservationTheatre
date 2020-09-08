@@ -3,8 +3,8 @@ package compte;
 public class Guichetier extends CompteUtilisateur{
 	private char type_utilisateur;
 	
-	public Guichetier(int id, String login_user, String mdp_user, String nom_user, String prenom_user) {
-		super(id, login_user, mdp_user, nom_user, prenom_user);
+	public Guichetier(String login_user, String mdp_user, String nom_user, String prenom_user) {
+		super(login_user, mdp_user, nom_user, prenom_user);
 		this.type_utilisateur='g';
 	}
 	

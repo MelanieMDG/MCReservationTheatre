@@ -8,8 +8,7 @@ public class CompteUtilisateur {
 	private String prenom;
 	private char type_utilisateur;
 	
-	public CompteUtilisateur(int id, String login_user, String mdp_user, String nom_user, String prenom_user) {
-		this.id_utilisateur=id;
+	public CompteUtilisateur(String login_user, String mdp_user, String nom_user, String prenom_user) {
 		this.login=login_user;
 		this.mdp=mdp_user;
 		this.nom=nom_user;
@@ -27,6 +26,12 @@ public class CompteUtilisateur {
 	}
 	public String GetPrenom() {
 		return this.prenom;
+	}
+	public String GetLogin() {
+		return this.login;
+	}
+	public String GetMDP() {
+		return this.mdp;
 	}
 
 	public char GetType() {
