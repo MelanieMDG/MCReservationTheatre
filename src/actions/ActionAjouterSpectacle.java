@@ -55,7 +55,7 @@ public class ActionAjouterSpectacle implements ActionListener {
 			 //si l'utilisateur a rempli correctement tous les champs, ajouter le spectacle
 			 Spectacle new_spec= new Spectacle(nom,t,auteur,mes);
 			 BDD.Ajouter_element(new_spec,1);
-			 
+			 JOptionPane.showMessageDialog(null,"Le spectacle a été ajouté avec succès","Spectacle ajouté",JOptionPane.INFORMATION_MESSAGE);
 		 }else {
 			 JOptionPane.showMessageDialog(null,"Veuillez remplir tous les champs.","Erreur",JOptionPane.ERROR_MESSAGE);
 		 }

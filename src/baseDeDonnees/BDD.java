@@ -109,7 +109,7 @@ public class BDD {
 				int id_spectacle=r.getInt("Spectacle");
 				int id_Salle=r.getInt("Salle");
 				LocalDate date=LocalDate.of(r.getInt("annee_date"),r.getInt("mois_date"),r.getInt("jour_date"));
-				Representation_BDD rpz = new Representation_BDD(id_rpz,id_spectacle,id_Salle,date);
+				Representation_BDD rpz = new Representation_BDD(id_spectacle,id_Salle,date,id_rpz);
 				liste_bdd_rpz.add(rpz);				
 			}
 			cnx.close();
@@ -119,19 +119,17 @@ public class BDD {
 				liste_spectacle.add(s);
 				
 				ArrayList <Tarif> tarifs = rechercher_tarifs(rbdd.GetIDRepresentation());
-				
+				LocalDate date = rbdd.GetDate();
 				ArrayList <Salle> liste_salle = Salle.init_salles();
-				Salle salle_utilisee = null;
+				
 				for (Salle tmp : liste_salle) {
+
 					if(tmp.getId()==rbdd.GetIDSalle()) {
 						Salle salle_utlisee = tmp;
+					Representation rpz = new Representation(s,tarifs,tmp,date.getDayOfMonth(),date.getMonthValue(),date.getYear(),rbdd.GetIDRepresentation());
+						liste_representation.add(rpz);
 					}
-				}
-				
-				LocalDate date = rbdd.GetDate();
-				
-				Representation rpz = new Representation(s,tarifs,salle_utilisee,date.getDayOfMonth(),date.getMonthValue(),date.getYear());
-				liste_representation.add(rpz);
+				}	
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -173,7 +171,7 @@ public class BDD {
 			ResultSet r = st.executeQuery(requete);
 			
 			while(r.next()) {
-				Tarif t = new Tarif(r.getInt("ID"),r.getString("Type_De_Tarif"),r.getFloat("Prix"));
+				Tarif t = new Tarif(r.getString("Type_De_Tarif"),r.getFloat("Prix"),r.getInt("ID"));
 				t_list.add(t);
 			}
 			cnx.close();
@@ -278,6 +276,8 @@ public class BDD {
 	/*
 	 * Fonction qui ajoute un element à la base de données
 	 * type = 1 : ajout d'un spectacle
+	 * type = 2 : ajout d'une representation
+	 * type = 3 : ajout d'un tarif
 	 */
 	public static void Ajouter_element(Object o, int type) {
 		try {
@@ -291,8 +291,19 @@ public class BDD {
 				req+="spectacles (Nom,Temps,Auteur,mes) VALUES ('"+s.getTitre()+"','"+s.getDuree()+"','"
 						+s.getAuteur()+"','"+s.getMetteur_en_scene()+"')";
 			break;
+			case 2: 
+				Representation_BDD rpz = (Representation_BDD)o;
+				req+="representation (Spectacle,Salle,jour_date,mois_date,annee_date) VALUES ("+
+						rpz.GetIDSpectacle()+","+rpz.GetIDSalle()+","+rpz.GetDate().getDayOfMonth()+","+
+						rpz.GetDate().getMonthValue()+","+rpz.GetDate().getYear()+")";
+			break;
+			case 3: 
+				Tarif t=(Tarif)o;
+				req+="tarif (id_representation,prix,Type_De_Tarif) VALUES("+t.getId_tarif()+","+
+						t.getPrix()+","+t.getType_tarif()+")";
 			}
 			st.execute(req);
+			cnx.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

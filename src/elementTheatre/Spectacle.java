@@ -22,7 +22,7 @@ public class Spectacle {
 		this.auteur=aut;
 		this.metteur_en_scene=mes;
 	}
-
+	
 	public String getTitre() {
 		return this.titre;
 	}
@@ -37,6 +37,9 @@ public class Spectacle {
 
 	public int getDuree() {
 		return this.duree;
+	}
+	public int getNum_spectacle() {
+		return this.num_spectacle;
 	}
 	
 	

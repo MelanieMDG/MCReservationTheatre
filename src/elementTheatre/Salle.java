@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Salle {
 	private int id;
-	private String nom;
 	private int nb_place;
+	private String nom;
 	
 	public Salle(int id_salle,String nom_salle,int places) {
 		this.id=id_salle;
@@ -15,6 +15,10 @@ public class Salle {
 	
 	public int getId() {
 		return this.id;
+	}
+	
+	public String getnom() {
+		return this.nom;
 	}
 	
 	public static  ArrayList<Salle> init_salles(){

@@ -1,7 +1,6 @@
 package baseDeDonnees;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Representation_BDD {
 	//classe qui va servir à recuperer les ID de base de données de la table Représentation
@@ -10,8 +9,14 @@ public class Representation_BDD {
 	private int id_Salle;
 	private LocalDate date;
 	
-	public Representation_BDD(int rpz, int spec, int sal, LocalDate d) {
+	//***CONSTRUCTEURS***//
+	public Representation_BDD(int spec, int sal, LocalDate d,int rpz) {
 		this.id_representation=rpz;
+		this.id_spectacle=spec;
+		this.id_Salle=sal;
+		this.date=d;
+	}
+	public Representation_BDD(int spec, int sal, LocalDate d) {
 		this.id_spectacle=spec;
 		this.id_Salle=sal;
 		this.date=d;

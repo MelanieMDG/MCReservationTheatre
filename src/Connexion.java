@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 import actions.ActionConnexion;
-import compte.CompteUtilisateur;
+import actions.ActionQuitter;
 
 import javax.swing.JLabel;
 
@@ -94,5 +94,9 @@ public class Connexion {
 		//Gestion des evenements
 		ActionListener ac = new ActionConnexion(textField_identifiant,textField_mdp);
 		btnConnect.addActionListener(ac);
+		
+		
+		ActionListener test= new ActionQuitter();
+		btnQuitter.addActionListener(test);
 	}
 }
